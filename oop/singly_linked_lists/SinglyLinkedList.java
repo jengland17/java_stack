@@ -1,6 +1,6 @@
-public class SinglyLinkedList {
+public class SinglyLinkedList { // SLL<T>
     
-    public Node head;
+    public Node head; // Node<T> head;
 
 
     public SinglyLinkedList() {
