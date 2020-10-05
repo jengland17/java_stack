@@ -10,8 +10,8 @@ public class ListTester {
         sll.addNode(5);
         sll.addNode(15);
         sll.addNode(2);
-        sll.removeNode();
-        sll.removeNode();
+        sll.showValues();
+        sll.reverseOrder();
         sll.showValues();
 
     }

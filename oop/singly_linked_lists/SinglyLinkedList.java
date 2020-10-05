@@ -1,6 +1,6 @@
-public class SinglyLinkedList { // SLL<T>
+public class SinglyLinkedList { 
     
-    public Node head; // Node<T> head;
+    public Node head; 
 
 
     public SinglyLinkedList() {
@@ -51,5 +51,22 @@ public class SinglyLinkedList { // SLL<T>
         System.out.println(runner.value);
 
     }
+
+// starting from a SLL class, write a method that will reverse the order of the values stored in a Singly Linked list
+
+    public void reverseOrder() {
+        Node prev = null; 
+        Node current = node; 
+        Node next = null; 
+        while (current != null) { 
+            next = current.next; 
+            current.next = prev; 
+            prev = current; 
+            current = next; 
+        } 
+        node = prev; 
+        return node; 
+    }
+
 
 }
