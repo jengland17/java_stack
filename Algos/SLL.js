@@ -39,15 +39,89 @@ class SLL {
         var prev = null;
         while (runner != null){
             nextUp = runner.next;
-            // save runner.next
             runner.next = prev;
-            // set current runner.next to prev
             prev = runner;
-            // set prev to the current runner
             runner = nextUp;
-            // set runner to runner.next
         }
-        // set this.head to the last node
         this.head = prev;
     }
+
+    remove(val) {
+        if(!this.head) {
+            return false;
+        }
+        if(this.head.value === val) {
+            this.head = this.head.next;
+            return true;
+        }
+        let runner = this.head;
+        while(runner.next) {
+            if(runner.next.value === val) {
+                runner.next = runner.next.next;
+                return true;
+            }
+            runner = runner.next;
+        }
+        return false;
+    }
+
+    removeAt(index) {
+        if(!this.head) {
+            return null;
+        }
+        if(index === 0) {
+            let output = this.head.value;
+            this.head = this.head.next;
+            return output;
+        }
+        let runner=this.head;
+        for(let i=0; i<index-1; i++) {
+            runner=runner.next;
+            if(!runner) {
+                return null;
+            }
+        }
+        if(!runner && !runner.next) {
+            return null;
+        }
+        let response = runner.next.value;
+        runner.next = runner.next.next;
+        return response;
+    }
+
+    hasLoop() {
+
+        if (this.head == null) {
+            return "Nothing";
+        }
+
+        else {
+
+            var slow = this.head;
+            var fast = this.head.next;
+
+            while (fast != null) {
+
+                if (fast == slow) {
+                    return true
+                }
+
+                fast = fast.next.next;
+                slow = slow.next;
+
+            }
+        }
+
+        return false;
+
+    }
 }
+
+var list1 = new SLL();
+list1.add(3);
+list1.add(2);
+list1.add(1);
+var lastNode = list1.head.next.next;
+lastNode.next = list1.head;
+
+console.log(list1.hasLoop());
