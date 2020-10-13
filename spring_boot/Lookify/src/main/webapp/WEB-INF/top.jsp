@@ -54,13 +54,8 @@
 				</tbody>
 
 			</table>
-
-
+			
 		</div>
-
-
-
-
 
 	</div>
 

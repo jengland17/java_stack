@@ -1,5 +1,11 @@
 // The BST structures the data in a tee rather than a flat linear sequence. BSTs always start with a single node which in a Linked List we call the 'head' and in a tree we call the 'root'. A Binary Tree Node can have a left child and/or a right child; each child might have left and/or right children of its own. An entire section of a family might descend from one sibling as opposed to another. A binary search tree adds a requirement that for each node, all nodes to the left must have smaller values. Similarly the right must contain larger or equal values. This constraint holds for every node in the tree. BST nodes without children are called 'leaf' nodes. Depending on its values, no node is required to have both a left and right node. Even in a tree containing many values the root might only have one left or right child.
 
+// Write a size() method that returns the number of nodes (values) contained in the tree.
+
+// Return the smallest value stored in the BST
+
+// Return whether a value is stored in a BST
+
 
 class BTNode {
     constructor(val) {
@@ -56,6 +62,54 @@ class BST {
         }
     }
 
+    min() {
+
+        if (this.root === null) {
+            return "Empty tree";
+        } 
+
+        let runner = this.root;
+
+        while (runner.left !== null) {
+            runner = runner.left;
+        }
+        return runner.value;
+
+    }
+
+    contains(val) {
+
+        if (this.root === null){
+            return "Empty tree";
+        }
+
+        let runner = this.root;
+        let found = false;
+
+        while (!found && runner) {
+            if (val < runner.value) {
+                runner = runner.left;
+            } 
+            else if (val > runner.value) {
+                runner = runner.right;
+            } else {
+                found = true;
+            }
+        }
+
+        return found;
+
+    }
+
+    size(pointer = this.root) {
+
+        if (pointer === null) {
+            return 0;
+        } else {
+            return this.size(pointer.left) + this.size(pointer.right) + 1 ;
+        }
+
+    }
 
 }
 
@@ -67,7 +121,13 @@ oak.insert(50);
 oak.insert(200);
 oak.insert(170);
 oak.insert(300);
+oak.insert(12);
 
-console.log(oak);
 
-oak.print();
+console.log(oak.contains(12));
+
+console.log(oak.size());
+
+
+
+
