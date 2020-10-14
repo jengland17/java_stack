@@ -34,7 +34,7 @@ class BST {
 
         while (runner !== null) {
 
-            if( val < runner.value) {
+            if (val < runner.value) {
                 // go left
                 if (runner.left === null) {
                     runner.left = newNode;
@@ -66,7 +66,7 @@ class BST {
 
         if (this.root === null) {
             return "Empty tree";
-        } 
+        }
 
         let runner = this.root;
 
@@ -79,7 +79,7 @@ class BST {
 
     contains(val) {
 
-        if (this.root === null){
+        if (this.root === null) {
             return "Empty tree";
         }
 
@@ -89,7 +89,7 @@ class BST {
         while (!found && runner) {
             if (val < runner.value) {
                 runner = runner.left;
-            } 
+            }
             else if (val > runner.value) {
                 runner = runner.right;
             } else {
@@ -106,27 +106,46 @@ class BST {
         if (pointer === null) {
             return 0;
         } else {
-            return this.size(pointer.left) + this.size(pointer.right) + 1 ;
+            return this.size(pointer.left) + this.size(pointer.right) + 1;
         }
 
+    }
+
+    // Build a height() method on the BST object that returns the total height of the tree – the longest sequence of nodes from root node to leaf node.
+
+    height(pointer = this.root) {
+
+        if (pointer === null) {
+
+            return 0;
+
+        } else {
+
+            var leftHeight = this.height(pointer.left);
+            var rightHeight = this.height(pointer.right);
+    
+            return Math.max(leftHeight, rightHeight) + 1;
+
+        }
     }
 
 }
 
 
 const oak = new BST();
+const pine = new BST();
 
 oak.insert(100);
 oak.insert(50);
 oak.insert(200);
 oak.insert(170);
 oak.insert(300);
-oak.insert(12);
+oak.insert(10);
+oak.insert(425);
+oak.insert(500);
 
+console.log("The height is: ", oak.height());
 
-console.log(oak.contains(12));
-
-console.log(oak.size());
 
 
 
