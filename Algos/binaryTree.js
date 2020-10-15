@@ -129,6 +129,22 @@ class BST {
         }
     }
 
+   // Write a remove(value) method that will remove the first instance of the value from the BST. If the value is stored in a "leaf" node we may simply remove the pointer to it, if the value is stored in a node with one "child" we can change the pointer from it to its child, and if the node has two "children" we will have to determine the "in-order-successor".
+
+    remove(pointer = this.root, val) {
+
+        if (pointer === null) {
+            return "tree is empty";
+        } 
+        else if (val < pointer.value) {
+            pointer.left = this.remove(pointer.left, val);
+            return pointer
+        }
+        else if (val > pointer.value) {
+            pointer.right = this.remove(pointer.right, val);
+            return pointer;
+        }
+    }
 }
 
 
