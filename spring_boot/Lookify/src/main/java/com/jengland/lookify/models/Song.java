@@ -1,23 +1,28 @@
 package com.jengland.lookify.models;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
-@Table(name="lookify")
+@Table(name="songs")
 public class Song {
 	
 	@Id
@@ -30,21 +35,30 @@ public class Song {
 	@Size(min = 5, message="Please provide an artist with at least 5 characters")
 	private String artist;
 	
-	@NotNull(message="Please give a rating from 1-10")
-	private Integer rating;
 	
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date createdAt;
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date updatedAt;
+    
+    
+    @OneToMany(mappedBy="song", fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    private List<Rating> ratings;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_id")
+    private User user;
+    
+    
 	
 	public Song() {}
 	
-	public Song(String title, String artist, Integer rating) {
+	
+	
+	public Song(String title, String artist) {
 		this.title = title;
 		this.artist = artist;
-		this.rating = rating;
 	}
 	
 		
@@ -72,14 +86,6 @@ public class Song {
 		this.artist = artist;
 	}
 
-	public Integer getRating() {
-		return rating;
-	}
-
-	public void setRating(Integer rating) {
-		this.rating = rating;
-	}
-
 	public Date getCreatedAt() {
 		return createdAt;
 	}
@@ -96,7 +102,23 @@ public class Song {
 		this.updatedAt = updatedAt;
 	}
 	
-	
+	public List<Rating> getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(List<Rating> ratings) {
+		this.ratings = ratings;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
 
 	@PrePersist
     protected void onCreate(){

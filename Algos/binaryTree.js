@@ -144,6 +144,7 @@ class BST {
             pointer.right = this.remove(pointer.right, val);
             return pointer;
         }
+        
     }
 }
 

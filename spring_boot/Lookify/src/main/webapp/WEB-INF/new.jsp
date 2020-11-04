@@ -43,22 +43,6 @@
 					<form:errors class="text-danger" path="artist" />
 				</p>
 
-				<p class="form-group">
-					<form:label path="rating">Song Rating: </form:label>
-					<form:select class="form-control" path="rating">
-						<form:option value="1">1</form:option>
-						<form:option value="2">2</form:option>
-						<form:option value="3">3</form:option>
-						<form:option value="4">4</form:option>
-						<form:option value="5">5</form:option>
-						<form:option value="6">6</form:option>
-						<form:option value="7">7</form:option>
-						<form:option value="8">8</form:option>
-						<form:option value="9">9</form:option>
-						<form:option value="10">10</form:option>
-					</form:select>
-					<form:errors class="text-danger" path="rating" />
-				</p>
 
 				<input type="submit" class="btn btn-success float-right"
 					value="Add Song">

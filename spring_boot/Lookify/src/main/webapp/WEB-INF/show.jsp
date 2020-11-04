@@ -28,8 +28,6 @@
 
 			<p>Artist: ${song.artist}</p>
 
-			<p>Rating: ${song.rating}</p>
-
 			<a href="/delete/${song.id}" class="text-danger">Delete</a>
 
 		</div>

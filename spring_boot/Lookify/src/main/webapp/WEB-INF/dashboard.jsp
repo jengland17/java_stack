@@ -25,6 +25,8 @@
 			<a href="/songs/new" class="navbar-brand">Add New Song</a> 
 			
 			<a href="/search/topten" class="navbar-brand"> Top Ten </a>
+			
+			<a href="/logout" class="navbar-brand">Logout</a>
 
 			<form action="/dashboard" method="get">
 			<input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search Artist's" name="search">
@@ -39,8 +41,8 @@
 
 				<thead>
 					<tr>
-						<th>Name</th>
-						<th>Rating</th>
+						<th>Artist</th>
+						<th>Song</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -49,8 +51,8 @@
 
 					<c:forEach items="${songs}" var="song">
 						<tr>
+							<td> ${song.artist} </td>
 							<td><a href="/songs/${song.id}"> <c:out value="${song.title}" /> </a></td>
-							<td><c:out value="${song.rating}" /></td>
 							<td><a class="btn btn-danger" href="/delete/${song.id}">Delete</a></td>
 						</tr>
 					</c:forEach>
